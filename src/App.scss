@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+  background-color: #cacad86e;
+  min-height: 100vh;
+  background-image: url('../src/assets/images/scott-blake-x-ghf9LjrVg-unsplash.jpg');
+  background-size: 100%;
+}
+
+.App-logo {
+  height: 4rem;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  h2{
+    margin: 1rem 1rem;
+    text-align: left;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
