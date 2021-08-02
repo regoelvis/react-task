@@ -17,7 +17,6 @@ function Login(){
         console.log(event.target)
         if(event.target.name==='checkbox'){
             value = event.target.checked;
-            value = value? false: true;
         }
         temp = {
             ...temp,
