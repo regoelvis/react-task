@@ -1,4 +1,4 @@
-import React , { ChangeEvent, useState} from 'react';
+import React , { ChangeEvent, useEffect, useState} from 'react';
 import './login.scss';
 import logo from '../ed_icon.svg'
 import InputBox from '../components/inputbox';
@@ -8,14 +8,18 @@ function Login(){
     const [form, setForm] = useState({
         email: '' ,
         password: '',
-        checkbox: false
+        remember: false
     })
+
+    useEffect(() => {
+        console.log('Form changed');
+    }, [form])
 
     function formOnChange(event : ChangeEvent<HTMLFormElement>){
         let temp = form;
         let {value} = event.target;
         console.log(event.target)
-        if(event.target.name==='checkbox'){
+        if(event.target.name==='remember'){
             value = event.target.checked;
         }
         temp = {
@@ -38,7 +42,7 @@ function Login(){
             type: INPUTTYPES.PASSWORD
         },
         remember: {
-            name: INPUTTYPES.CHECK,
+            name: 'remember',
             placeholder: 'Remember Me',
             type: INPUTTYPES.CHECK
         }
@@ -49,16 +53,23 @@ function Login(){
         // const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     }
 
+    const inputs = [
+        <InputBox data={inputData.email} value={form.email} key="email"></InputBox>,
+        <InputBox data={inputData.password} value={form.password} key="password" ></InputBox>,
+        <InputBox data={inputData.remember} value={''} key="remember"></InputBox>
+    ]
+
     return (
         <div className="form-container">
             <img className="logo" src={logo} alt="logo"/>
             <form className="form" onChange={formOnChange}>
                 <div className="form-fields">
-                    <InputBox data={inputData.email} value={form.email}></InputBox>
-                    <InputBox data={inputData.password} value={form.password}></InputBox>
-                    <InputBox data={inputData.remember} value={form.checkbox.toString()}></InputBox>
-                </div>  
+                    {inputs.map((input) => {return input})}
+                </div>
             </form>
+            {   (form.remember===true) && 
+                    <p style={{marginRight: '2rem'}}>You will be remembered</p>
+            }
             <button className="login" onClick={onFormSubmit}>Login &rarr;</button>              
         </div>
     );
