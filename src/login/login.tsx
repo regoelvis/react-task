@@ -3,6 +3,7 @@ import './login.scss';
 import logo from '../ed_icon.svg'
 import InputBox from '../components/inputbox';
 import {INPUTTYPES} from '../enums/InputTypes';
+import {getTrue} from '../service/api.service';
 
 function Login(){
     const [form, setForm] = useState({
@@ -48,9 +49,13 @@ function Login(){
         }
     }
 
-    function onFormSubmit(event: any){
+    async function onFormSubmit(event: any){
         event.preventDefault();
         // const emailRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const bool = await getTrue();
+        if(bool.ok){
+            console.log(bool);
+        }
     }
 
     const inputs = [
